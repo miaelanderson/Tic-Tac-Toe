@@ -16,17 +16,21 @@ struct ContentView: View {
                 ForEach(0..<9) { index in
                     ZStack {
                         Color.purple
-                        Text("X")
+                        Text(moves[index])
                             .font(.system(size: 60))
                             .fontWeight(.heavy)
                             }
                             .frame(width: 120, height: 120, alignment: .center)
                             .cornerRadius(30)
+                            .onTapGesture {
+                                moves[index] = "X"
+                            }
                 }
             })
         }
         .preferredColorScheme(.dark)
     }
+    @State private var moves = Array(repeating: "", count: 9)
 }
 
 #Preview {
