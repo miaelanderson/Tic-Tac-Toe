@@ -23,7 +23,12 @@ struct ContentView: View {
                             .frame(width: 120, height: 120, alignment: .center)
                             .cornerRadius(30)
                             .onTapGesture {
-                                moves[index] = "X"
+                                withAnimation(.default) {
+                                    if moves[index] == "" {
+                                        moves[index] = xTurn ? "X" : "O"
+                                        xTurn.toggle()
+                                    }
+                                }
                             }
                 }
             })
@@ -31,6 +36,7 @@ struct ContentView: View {
         .preferredColorScheme(.dark)
     }
     @State private var moves = Array(repeating: "", count: 9)
+    @State private var xTurn = true
 }
 
 #Preview {
